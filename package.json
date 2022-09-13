@@ -1,4 +1,5 @@
 {
+  "proxy": "http://localhost3000",
   "name": "woodshop-frontend",
   "version": "0.1.0",
   "private": true,
