@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const LoginForm = () => {
+const LoginForm = ({setCurrentClient}) => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",

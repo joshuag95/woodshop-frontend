@@ -1,23 +1,23 @@
 import './App.css';
-import { Route, Switch } from 'react-router-dom';
-import NavBar from './NavBar';
-import Home from './Home';
-import Profile from './Profile';
-import Cart from './Cart';
-import Products from './Products'
+import LoggedIn from './LoggedIn';
+import LoggedOut from './LoggedOut';
 import { useEffect, useState } from 'react';
 import {BrowserRouter as Router} from "react-router-dom";
+
 
 function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentClient, setCurrentClient] = useState(null)
+ 
+
 
   useEffect(() => { 
-    fetch("/profile")
+    fetch("/clients")
     .then ((r) => {
       if (r.ok) {
-        r.json().then((client)=> {
+        r.json().then((client)=>  {
+          console.log(client)
           setCurrentClient(client);
           setIsAuthenticated(true);
         });
@@ -25,33 +25,15 @@ function App() {
     });
   }, []);
 
+
   if (!isAuthenticated) {
     return <div></div>;
   }
 
   return (
     <div className="App">
-      <Router>{false ? <LoggedIn /> : <LoggedOut />}</Router>
-      <NavBar />
-
-      <Switch>
-        <Route exact path= "/">
-          <Home />
-        </Route>
-
-        <Route exact path= "/Profile">
-          <Profile/>
-        </Route>
-
-        <Route exact path= '/mycart'>
-          <Cart/>
-        </Route>
-
-        <Route exact path= '/products'>
-          <Products/>
-        </Route>
-
-      </Switch>
+      <Router>{false ? <LoggedIn /> : <LoggedOut setCurrentClient = {setCurrentClient} />}</Router>
+      
     </div>
   );
 }

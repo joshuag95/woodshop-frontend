@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const SignupForm = () => {
+const SignupForm = ({setCurrentClient}) => {
   const [formData, setFormData] = useState({
     name: "",
     password: "",
@@ -18,18 +18,18 @@ const SignupForm = () => {
   function handleSubmit(e) {
     e.preventDefault();
 
-    const userCreds = { ...formData };
+    const clientCreds = { ...formData };
 
-    fetch("/users", {
+    fetch("/clients", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(userCreds),
+      body: JSON.stringify(clientCreds),
     }).then((res) => {
       if (res.ok) {
-        res.json().then((user) => {
-          setCurrentUser(user);
+        res.json().then((client) => {
+          setCurrentClient(client);
         });
       } else {
         res.json().then((errors) => {
