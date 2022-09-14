@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
+
 
 const SignupForm = ({setCurrentClient}) => {
   const [formData, setFormData] = useState({
@@ -15,6 +17,10 @@ const SignupForm = ({setCurrentClient}) => {
       [e.target.name]: e.target.value,
     });
   };
+
+  
+
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -37,6 +43,7 @@ const SignupForm = ({setCurrentClient}) => {
         });
       }
     });
+    <Redirect push to="/login" />
   }
 
   return (

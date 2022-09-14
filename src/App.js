@@ -13,11 +13,10 @@ function App() {
 
 
   useEffect(() => { 
-    fetch("/clients")
+    fetch("/profile")
     .then ((r) => {
       if (r.ok) {
         r.json().then((client)=>  {
-          console.log(client)
           setCurrentClient(client);
           setIsAuthenticated(true);
         });
@@ -26,13 +25,10 @@ function App() {
   }, []);
 
 
-  if (!isAuthenticated) {
-    return <div></div>;
-  }
-
+ 
   return (
     <div className="App">
-      <Router>{false ? <LoggedIn /> : <LoggedOut setCurrentClient = {setCurrentClient} />}</Router>
+      <Router>{isAuthenticated ? <LoggedIn /> : <LoggedOut setCurrentClient = {setCurrentClient} />}</Router>
       
     </div>
   );

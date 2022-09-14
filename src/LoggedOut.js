@@ -7,6 +7,7 @@ export default function LoggedOut({setCurrentClient}) {
         <div>
             <Route exact path='/signup'>
                 <LoginForm setCurrentClient={setCurrentClient}/>
+                <br></br>
                 <Signup setCurrentClient={setCurrentClient} />
             </Route>
         </div>
